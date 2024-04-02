@@ -6,8 +6,8 @@ namespace DuckHunt
 {
     public sealed class DuckInstaller : MonoInstaller
     {
-        [SerializeField] private TransformContainer m_duckTransform = default;
-
+        [SerializeField] private DuckTransformContainer m_duckTransform = default;
+        [SerializeField] private DuckAnimatorContainer m_duckAnimator = default;
         public override void InstallBindings()
         {
             Container
@@ -16,8 +16,13 @@ namespace DuckHunt
                 .AsSingle();
 
             Container
-                .Bind<ITransformContainer>()
+                .Bind<IDuckTransformContainer>()
                 .FromInstance(m_duckTransform)
+                .AsSingle();
+
+            Container
+                .Bind<IDuckAnimatorContainer>()
+                .FromInstance(m_duckAnimator)
                 .AsSingle();
 
             Container
@@ -30,7 +35,29 @@ namespace DuckHunt
                 .To<DuckExecutor>()
                 .AsSingle();
 
+            Container
+                .Bind<IDuckDirectionCommand>()
+                .To<DuckDirectionCommand>()
+                .AsSingle();
 
+            Container
+                .Bind(typeof(IDuckDirectionValue), typeof(IDuckDirectionObservable))
+                .To<DuckDirectionValue>()
+                .AsSingle();
+
+            Container
+                .Bind<IDuckAnimationCommand>()
+                .To<DuckAnimationCommand>()
+                .AsSingle();
+
+            Container
+                .Bind<DuckAnimationExecutor>()
+                .To<DuckAnimationExecutor>()
+                .AsSingle()
+                .NonLazy();
+
+
+            Debug.LogError($"End");
         }
     }
 }

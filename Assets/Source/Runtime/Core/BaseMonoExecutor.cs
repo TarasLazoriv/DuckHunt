@@ -1,7 +1,6 @@
-using LazerLabs.Commands;
 using UnityEngine;
 
-namespace DuckHunt
+namespace LazerLabs.Commands
 {
     public abstract class BaseMonoExecutor<T1, T2> : MonoBehaviour, ICommand where T1 : ICommandVoid<T2>
     {

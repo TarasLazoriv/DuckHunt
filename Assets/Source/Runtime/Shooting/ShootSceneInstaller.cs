@@ -22,9 +22,22 @@ namespace DuckHunt
                 .AsTransient();
 
             Container
+                .Bind<CommandRunner>()
+                .To<CommandRunner>()
+                .AsTransient();
+
+            Container
                 .Bind<IGetGameFieldCommand>()
                 .To<GetGameFieldCommand>()
                 .AsSingle();
+            Container
+
+                .Bind<IGetRandomSpawnPointCommand>()
+                .To<SpawnPointCommand>()
+                .AsSingle();
+
+
+
 
 
         }

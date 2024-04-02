@@ -1,4 +1,4 @@
-namespace DuckHunt
+namespace LazerLabs.Commands
 {
     public interface IValueContainer<T> : IReadOnlyValueContainer<T>
     {

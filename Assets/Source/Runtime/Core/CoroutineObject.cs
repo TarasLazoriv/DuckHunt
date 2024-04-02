@@ -1,7 +1,6 @@
-using LazerLabs.Commands;
 using UnityEngine;
 
-namespace DuckHunt
+namespace LazerLabs.Commands
 {
     public sealed class CoroutineObject : MonoBehaviour, ICoroutine
     {

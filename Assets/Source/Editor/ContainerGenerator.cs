@@ -1,16 +1,16 @@
-﻿using UnityEditor;
 using System.IO;
+using UnityEditor;
 
 namespace DuckHunt
 {
     public static partial class CodeGenerator
     {
-        [MenuItem("Assets//Create/Command/CreateCommand", false, 10)]
-        private static void CreateCommand(MenuCommand menuCommand)
+        [MenuItem("Assets//Create/Command/CreateValueContainer", false, 10)]
+        private static void CreateValueContainer(MenuCommand menuCommand)
         {
             // Get the selected path in the project window
             string selectedPath = AssetDatabase.GetAssetPath(Selection.activeObject);
-            string defaultName = "NewCommand.cs";
+            string defaultName = "NewMonoValueContainer.cs";
             string fileName = EditorUtility.SaveFilePanelInProject("Save Command", defaultName, "cs", "Enter command name", selectedPath);
 
             // If the user cancels or closes the dialog, exit the method
@@ -29,16 +29,9 @@ namespace DuckHunt
                 code =
                     $@"using LazerLabs.Commands;
 
-    public interface I{className} : ICommand {{}}
+    public interface I{className} : IReadOnlyValueContainer<T> {{}}
 
-    public sealed class {className} : I{className}
-    {{
-        public void Execute()
-        {{
-            throw new System.NotImplementedException();
-        }}
-    }}
-";
+    public sealed class {className} : MonoValueContainer<T>,I{className}   {{}}";
             }
             else
             {
@@ -46,15 +39,9 @@ namespace DuckHunt
                     $@"using LazerLabs.Commands;
 namespace {defaultNamespace}
 {{
-    public interface I{className} : ICommand {{}}
+    public interface I{className} : IReadOnlyValueContainer<T> {{}}
 
-    public sealed class {className} : I{className}
-    {{
-        public void Execute()
-        {{
-            throw new System.NotImplementedException();
-        }}
-    }}
+    public sealed class {className} : MonoValueContainer<T>,I{className}   {{}}
 }}
 ";
             }

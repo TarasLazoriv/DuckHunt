@@ -1,6 +1,5 @@
 ﻿using LazerLabs.Commands;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace DuckHunt
 {
@@ -19,9 +18,8 @@ namespace DuckHunt
             GameField field = m_getGameField.Execute();
             Vector2 randomPoint = new Vector2(
                 Random.Range(field.BottomLeft.x, field.TopRight.x),
-                Random.Range(field.BottomLeft.y, field.TopRight.y)
+                field.BottomLeft.y
             );
-            Debug.Log("randomPoint: " + randomPoint);
             return randomPoint;
         }
     }

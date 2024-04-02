@@ -1,7 +1,6 @@
 using System;
-using LazerLabs.Commands;
 
-namespace DuckHunt
+namespace LazerLabs.Commands
 {
     public abstract class DefaultMonoExecutor : BaseMonoExecutor<ICommandVoid<Action>, Action> { }
 }

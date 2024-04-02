@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DuckHunt
+namespace LazerLabs.Commands
 {
     public abstract class CustomObservable<T> : IObservable<T>
     {
