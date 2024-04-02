@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2585831921534240336}
   - component: {fileID: 7201220924062526690}
   - component: {fileID: 4345417184085914712}
+  - component: {fileID: 5706068809509696703}
+  - component: {fileID: 4943869773102466469}
   m_Layer: 0
   m_Name: Duck
   m_TagString: Untagged
@@ -118,3 +120,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087aed5c3c85bd948afebfcbfe81c965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_duckTransform: {fileID: 4943869773102466469}
+--- !u!114 &5706068809509696703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886874431621425896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c5a6fbaab244c4f9498f7ea7610157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4943869773102466469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886874431621425896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82d7648081f9ffc4085719c4a5f758b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Value>k__BackingField: {fileID: 7241493931416730769}

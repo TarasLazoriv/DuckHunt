@@ -7,21 +7,24 @@ namespace DuckHunt
 {
     public class NewBehaviourScript : MonoBehaviour
     {
-        private TestCommand m_command =default;
+        private TestCommand m_command = default;
         private readonly CommandRunner m_runner = new CommandRunner();
-        [Inject] private DuckFactory m_prefab = default;
+        private TestExecutor m_executor = default;
+        [Inject] private DuckMonoExecutor.Factory m_factory = default;
 
         public class TestCommand : ICommand
         {
-            private DuckFactory m_prefab = default;
+            private DuckMonoExecutor.Factory m_prefab = default;
 
-            public TestCommand(DuckFactory prefab)
+            public TestCommand(DuckMonoExecutor.Factory prefab)
             {
                 m_prefab = prefab;
             }
             public void Execute()
             {
-                m_prefab.Create();
+                var el = m_prefab.Create();
+                el.transform.position = new Vector2(0, -4f);
+                el.Execute();
             }
         }
 
@@ -32,9 +35,16 @@ namespace DuckHunt
 
         private void Start()
         {
-            m_command = new TestCommand(m_prefab);
-            TestExecutor executor = new TestExecutor(m_command, m_runner);
-            executor.Execute();
+            m_command = new TestCommand(m_factory);
+            m_executor = new TestExecutor(m_command, m_runner);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                m_executor.Execute();   
+            }
         }
     }
 }

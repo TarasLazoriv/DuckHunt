@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SimpleAirHockey.Runtime
+namespace DuckHunt
 {
     public abstract class CustomObservable<T> : IObservable<T>
     {
@@ -18,7 +18,7 @@ namespace SimpleAirHockey.Runtime
         }
 
         // Method that notifies observers of a change
-        public void NotifyObservers(T value)
+        protected void NotifyObservers(T value)
         {
             foreach (IObserver<T> observer in m_observers)
             {

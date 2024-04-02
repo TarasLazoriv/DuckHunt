@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using LazerLabs.Commands;
 using UnityEngine;
 using Zenject;
 
@@ -7,15 +6,31 @@ namespace DuckHunt
 {
     public sealed class DuckInstaller : MonoInstaller
     {
+        [SerializeField] private TransformContainer m_duckTransform = default;
 
         public override void InstallBindings()
         {
-            Debug.LogError($"DuckInstaller 1");
             Container
-                .Bind<int>()
-                .FromInstance(1)
+                .Bind<IPathGeneratorCommand>()
+                .To<PathGeneratorCommand>()
                 .AsSingle();
-            Debug.LogError($"DuckInstaller 2");
+
+            Container
+                .Bind<ITransformContainer>()
+                .FromInstance(m_duckTransform)
+                .AsSingle();
+
+            Container
+                .Bind<IDuckCommand>()
+                .To<DuckCommand>()
+                .AsSingle();
+
+            Container
+                .Bind<DuckExecutor>()
+                .To<DuckExecutor>()
+                .AsSingle();
+
+
         }
     }
 }
