@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.lazerlabs.commands": "git@github.com:TarasLazoriv/Commands.git",
+    "com.lazerlabs.commands": "git@github.com:TarasLazoriv/Commands.git#develop",
     "com.svermeulen.extenject": "git@github.com:TarasLazoriv/ZenjectUPM.git#9.2.2",	
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",

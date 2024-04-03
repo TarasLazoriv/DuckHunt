@@ -11,7 +11,8 @@ namespace DuckHunt
     {
         private readonly IGetGameFieldCommand m_getGameField = default;
         // Number of points in the path
-        public const int PathPointNum = 4;
+        public const int PathPointNumMin = 4;
+        public const int PathPointNumMax = 7;
         // Offset from the top of the field for the last point
         public const float OutOfField = 1f;
 
@@ -28,10 +29,11 @@ namespace DuckHunt
 
             System.Random random = new System.Random();
 
+            int pathPointNum = random.Next(PathPointNumMin, PathPointNumMax);
             float totalDistance = Vector2.Distance(startPoint, new Vector2(startPoint.x, gameField.TopRight.y + OutOfField));
-            float desiredSegmentLength = totalDistance / (PathPointNum - 1);
+            float desiredSegmentLength = totalDistance / (pathPointNum - 1);
 
-            for (int i = 1; i < PathPointNum; i++)
+            for (int i = 1; i < pathPointNum; i++)
             {
                 Vector2 prevPoint = result[i - 1];
                 float nextX = random.Next((int)gameField.BottomLeft.x, (int)gameField.TopRight.x);
@@ -46,7 +48,7 @@ namespace DuckHunt
 
             // Offset the last point above the top of the game field
             float lastPointX = random.Next((int)gameField.BottomLeft.x, (int)gameField.TopRight.x);
-            result[PathPointNum - 1] = new Vector2(lastPointX, gameField.TopRight.y + OutOfField);
+            result[pathPointNum - 1] = new Vector2(lastPointX, gameField.TopRight.y + OutOfField);
 
             return result;
         }

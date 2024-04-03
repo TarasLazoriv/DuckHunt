@@ -12,16 +12,17 @@ namespace DuckHunt
     public sealed class DuckCommand : IDuckCommand
     {
         private const float MinDistance = 0.1f;
-        private const float Speed = 5f;
         private readonly IDuckTransformContainer m_obj = default;
         private readonly IPathGeneratorCommand m_pathGeneratorCommand = default;
         private readonly IDuckDirectionCommand m_directionCommand = default;
+        private readonly IDuckSpeedValue m_duckSpeed = default;
 
-        public DuckCommand(IDuckTransformContainer obj, IPathGeneratorCommand pathGeneratorCommand, IDuckDirectionCommand directionCommand)
+        public DuckCommand(IDuckTransformContainer obj, IPathGeneratorCommand pathGeneratorCommand, IDuckDirectionCommand directionCommand, IDuckSpeedValue duckSpeed)
         {
             m_obj = obj;
             m_pathGeneratorCommand = pathGeneratorCommand;
             m_directionCommand = directionCommand;
+            m_duckSpeed = duckSpeed;
         }
 
         public IEnumerator Execute()
@@ -33,7 +34,7 @@ namespace DuckHunt
                 m_directionCommand.Execute(targetPosition - m_obj.Value.position);
                 while (Vector3.Distance(m_obj.Value.position, targetPosition) > MinDistance)
                 {
-                    m_obj.Value.position = Vector3.MoveTowards(m_obj.Value.position, targetPosition, Speed * Time.deltaTime);
+                    m_obj.Value.position = Vector3.MoveTowards(m_obj.Value.position, targetPosition, m_duckSpeed.Value * Time.deltaTime);
                     yield return null;
                 }
             }

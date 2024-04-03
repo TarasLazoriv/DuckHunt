@@ -11,11 +11,13 @@ namespace DuckHunt
     {
         private readonly IDuckTransformContainer m_duckTransformContainer = default;
         private readonly IDuckAnimatorContainer m_duckAnimatorContainer = default;
+        private readonly IDuckAnimationSpeedValue m_speedAnimation = default;
 
-        public DuckAnimationCommand(IDuckTransformContainer duckTransformContainer, IDuckAnimatorContainer duckAnimatorContainer)
+        public DuckAnimationCommand(IDuckTransformContainer duckTransformContainer, IDuckAnimatorContainer duckAnimatorContainer, IDuckAnimationSpeedValue speedAnimation)
         {
             m_duckTransformContainer = duckTransformContainer;
             m_duckAnimatorContainer = duckAnimatorContainer;
+            m_speedAnimation = speedAnimation;
         }
 
 
@@ -45,6 +47,8 @@ namespace DuckHunt
                     m_duckTransformContainer.Value.localScale = Vector3.one;
                     break;
             }
+
+            m_duckAnimatorContainer.Value.speed = m_speedAnimation.Value;
 
             if (DuckAnimationDictionary.TryGetValue(direction, out string animationName))
             {

@@ -5,9 +5,21 @@ namespace DuckHunt
 {
     public sealed class ShootSceneInstaller : MonoInstaller
     {
+        private sealed class DuckCount : ValueContainer<uint>, IDuckCountValue
+        {
+            public DuckCount() : base(2)
+            {
 
+            }
+        } // ToDo Del
         public override void InstallBindings()
         {
+            Container
+                .Bind<IDuckCountValue>()
+                .To<DuckCount>() // ToDo Del
+                .AsSingle();
+
+
             ICoroutine coroutine = gameObject.AddComponent<CoroutineObject>();
 
             Container
@@ -30,16 +42,20 @@ namespace DuckHunt
                 .Bind<IGetGameFieldCommand>()
                 .To<GetGameFieldCommand>()
                 .AsSingle();
-            Container
 
+            Container
                 .Bind<IGetRandomSpawnPointCommand>()
                 .To<SpawnPointCommand>()
                 .AsSingle();
 
 
 
-
+            Container
+                .Bind<IRoundValue>()
+                .To<RoundContainer>()
+                .AsSingle();
 
         }
+        private sealed class RoundContainer : ValueContainer<uint>, IRoundValue { }
     }
 }

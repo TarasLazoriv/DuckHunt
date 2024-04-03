@@ -1,11 +1,11 @@
 {
   "dependencies": {
     "com.lazerlabs.commands": {
-      "version": "git@github.com:TarasLazoriv/Commands.git",
+      "version": "git@github.com:TarasLazoriv/Commands.git#develop",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "3bbbeb7b564c173b8998968f9963e91a982566e7"
+      "hash": "d3cb8d9b3f44370406f2a7cdc5c7cf9dadaaac3e"
     },
     "com.svermeulen.extenject": {
       "version": "git@github.com:TarasLazoriv/ZenjectUPM.git#9.2.2",

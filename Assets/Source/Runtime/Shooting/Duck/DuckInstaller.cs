@@ -51,13 +51,35 @@ namespace DuckHunt
                 .AsSingle();
 
             Container
+                .Bind<IDuckSpeedValue>()
+                .To<DuckSpeedContainer>()
+                .AsSingle();
+
+            Container
+                .Bind<IDuckAnimationSpeedValue>()
+                .To<DuckAnimationSpeedContainer>()
+                .AsSingle();
+
+            Container
                 .Bind<DuckAnimationExecutor>()
                 .To<DuckAnimationExecutor>()
                 .AsSingle()
                 .NonLazy();
 
+        }
 
-            Debug.LogError($"End");
+        private sealed class DuckAnimationSpeedContainer : RoundDependentValueProvider, IDuckAnimationSpeedValue
+        {
+            protected override float DefaultVal => 0.75f;
+            protected override float DependPower => 0.05f;
+            public DuckAnimationSpeedContainer(IRoundValue roundValue) : base(roundValue) { }
+        }
+
+        private sealed class DuckSpeedContainer : RoundDependentValueProvider, IDuckSpeedValue
+        {
+            protected override float DefaultVal => 3f;
+            protected override float DependPower => 0.2f;
+            public DuckSpeedContainer(IRoundValue roundValue) : base(roundValue) { }
         }
     }
 }
