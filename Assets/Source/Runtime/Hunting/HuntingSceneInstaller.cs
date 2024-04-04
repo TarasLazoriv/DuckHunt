@@ -48,6 +48,10 @@ namespace DuckHunt
                 .To<SpawnPointCommand>()
                 .AsSingle();
 
+            Container
+                .Bind<IActiveDucksCountValue>()
+                .To<ActiveDucksCountValue>()
+                .AsSingle();
 
 
             Container
