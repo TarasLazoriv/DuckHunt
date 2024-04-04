@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace DuckHunt
 {
-    public interface IDuckCommand : ICommand<IEnumerator> { }
+    public interface IDuckCommand : ICommand<IEnumerable<Vector2>,IEnumerator> { }
 
     public sealed class DuckCommand : IDuckCommand
     {
@@ -25,10 +25,9 @@ namespace DuckHunt
             m_duckSpeed = duckSpeed;
         }
 
-        public IEnumerator Execute()
+        public IEnumerator Execute(IEnumerable<Vector2> path)
         {
-            IEnumerable<Vector2> path = m_pathGeneratorCommand.Execute(m_obj.Value.position);
-            for (int i = 1; i < path.Count(); i++)
+            for (int i = 0; i < path.Count(); i++)
             {
                 Vector3 targetPosition = path.ElementAt(i);
                 m_directionCommand.Execute(targetPosition - m_obj.Value.position);

@@ -59,6 +59,11 @@ namespace DuckHunt
                 .To<RoundContainer>()
                 .AsSingle();
 
+            Container
+                .Bind(typeof(IShotDuckValue), typeof(IShotDuckObservable))
+                .To<ShotDuckValue>()
+                .AsSingle();
+
         }
         private sealed class RoundContainer : ValueContainer<uint>, IRoundValue { }
     }

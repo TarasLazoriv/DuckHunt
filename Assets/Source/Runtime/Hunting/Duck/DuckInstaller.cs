@@ -8,16 +8,18 @@ namespace DuckHunt
     {
         [SerializeField] private DuckTransformContainer m_duckTransform = default;
         [SerializeField] private DuckAnimatorContainer m_duckAnimator = default;
+        [SerializeField] private DuckColliderContainer m_duckCollider = default;
         public override void InstallBindings()
         {
-            Container
-                .Bind<IPathGeneratorCommand>()
-                .To<PathGeneratorCommand>()
-                .AsSingle();
 
             Container
                 .Bind<IDuckTransformContainer>()
                 .FromInstance(m_duckTransform)
+                .AsSingle();
+
+            Container
+                .Bind<IDuckColliderContainer>()
+                .FromInstance(m_duckCollider)
                 .AsSingle();
 
             Container
@@ -59,6 +61,17 @@ namespace DuckHunt
                 .Bind<IDuckAnimationSpeedValue>()
                 .To<DuckAnimationSpeedContainer>()
                 .AsSingle();
+
+            Container
+                .Bind<IDuckFallCommand>()
+                .To<DuckFallCommand>()
+                .AsSingle();
+            
+            Container
+                .Bind<DuckFallExecutor>()
+                .To<DuckFallExecutor>()
+                .AsSingle()
+                .NonLazy();
 
             Container
                 .Bind<DuckAnimationExecutor>()

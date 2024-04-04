@@ -15,6 +15,12 @@ namespace DuckHunt
                 .FromComponentInNewPrefab(m_duckPrefab)
                 .AsSingle();
 
+
+            Container
+                .Bind<IPathGeneratorCommand>()
+                .To<PathGeneratorCommand>()
+                .AsSingle();
+
             Container
                 .Bind<IDucksContainer>()
                 .FromInstance(m_ducksContainer)

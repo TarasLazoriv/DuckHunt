@@ -9,6 +9,13 @@ namespace DuckHunt
     {
         private const string DuckTag = "Duck";
 
+        private readonly IShotDuckValue m_shotDuck = default;
+
+        public HuntingInputCommand(IShotDuckValue shotDuck)
+        {
+            m_shotDuck = shotDuck;
+        }
+
         //ToDo event and catch by duck obj
         public void Execute()
         {
@@ -23,6 +30,7 @@ namespace DuckHunt
             Debug.DrawRay(rayOrigin, rayDirection * 20, Color.red, 5f);
             if (hit.collider != null && hit.transform.CompareTag(DuckTag))
             {
+                m_shotDuck.Value = hit.transform.GetInstanceID();
                 Debug.LogError("finded duck" + hit.collider.gameObject.name);
             }
         }

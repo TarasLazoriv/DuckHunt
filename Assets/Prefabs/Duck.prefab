@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4345417184085914712}
   - component: {fileID: 5706068809509696703}
   - component: {fileID: 6509015819095786601}
+  - component: {fileID: 6640260498994058845}
   - component: {fileID: 2153471559326445295}
   - component: {fileID: 4884940184231468788}
   - component: {fileID: 4546417288154125741}
@@ -223,6 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_duckTransform: {fileID: 6509015819095786601}
   m_duckAnimator: {fileID: 4884940184231468788}
+  m_duckCollider: {fileID: 6640260498994058845}
 --- !u!114 &5706068809509696703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +250,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Value>k__BackingField: {fileID: 7241493931416730769}
+--- !u!114 &6640260498994058845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886874431621425896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e70f4e8d319b94db54c7437914411d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Value>k__BackingField: {fileID: 4546417288154125741}
 --- !u!95 &2153471559326445295
 Animator:
   serializedVersion: 7
