@@ -7,10 +7,7 @@ namespace DuckHunt
     {
         private sealed class DuckCount : ValueContainer<uint>, IDuckCountValue
         {
-            public DuckCount() : base(2)
-            {
-
-            }
+            public DuckCount() : base(2) { }
         } // ToDo Del
         public override void InstallBindings()
         {
@@ -24,18 +21,15 @@ namespace DuckHunt
 
             Container
                 .Bind<ICoroutine>()
-                .To<ICoroutine>()
                 .FromInstance(coroutine)
                 .AsSingle();
 
             Container
                 .Bind<CoroutineCommandRunner>()
-                .To<CoroutineCommandRunner>()
                 .AsTransient();
 
             Container
                 .Bind<CommandRunner>()
-                .To<CommandRunner>()
                 .AsTransient();
 
             Container
@@ -49,7 +43,7 @@ namespace DuckHunt
                 .AsSingle();
 
             Container
-                .Bind<IActiveDucksCountValue>()
+                .Bind(typeof(IActiveDucksCountValue), typeof(IActiveDucksCountObservable))
                 .To<ActiveDucksCountValue>()
                 .AsSingle();
 
@@ -62,6 +56,11 @@ namespace DuckHunt
             Container
                 .Bind(typeof(IShotDuckValue), typeof(IShotDuckObservable))
                 .To<ShotDuckValue>()
+                .AsSingle();
+
+            Container
+                .Bind<ICaughtDucksValue>()
+                .To<CaughtDucksValue>()
                 .AsSingle();
 
         }

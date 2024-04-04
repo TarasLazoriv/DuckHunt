@@ -1,37 +1,33 @@
-using System;
-using System.Collections.Generic;
 using LazerLabs.Commands;
+using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace DuckHunt
 {
-    public interface IDuckFallCommand : ICommandVoid<int> { }
+    public interface IDuckFallCommand : ICommand { }
 
     public sealed class DuckFallCommand : IDuckFallCommand
     {
-        private readonly IDuckTransformContainer m_duckTransformContainer = default;
-        private readonly IDuckColliderContainer m_duckColliderContainer = default;
-        private readonly IDuckDirectionValue m_directionValue = default;
         private readonly DuckExecutor m_duckExecutor = default;
+        private readonly IDuckTransformContainer m_duckTransformContainer = default;
+        private readonly IGetGameFieldCommand m_gameFieldCommand = default;
 
-        public DuckFallCommand(IDuckTransformContainer duckTransformContainer, IDuckDirectionValue directionValue, IDuckColliderContainer duckColliderContainer, DuckExecutor duckExecutor)
+        public DuckFallCommand(DuckExecutor duckExecutor, IDuckTransformContainer duckTransformContainer, IGetGameFieldCommand gameFieldCommand)
         {
-            m_duckTransformContainer = duckTransformContainer;
-            m_directionValue = directionValue;
-            m_duckColliderContainer = duckColliderContainer;
             m_duckExecutor = duckExecutor;
+            m_duckTransformContainer = duckTransformContainer;
+            m_gameFieldCommand = gameFieldCommand;
         }
 
-        public void Execute(int duckId)
+        public void Execute()
         {
-            if (m_duckTransformContainer.Value.GetInstanceID() == duckId)
-            {
-                m_directionValue.Value = DuckDirection.Down;
-                m_duckColliderContainer.Value.enabled = false;
-                IEnumerable<Vector2> path = new[] { Vector2.one };
-                m_duckExecutor.Execute(path);
-                m_duckExecutor.Execute();
-            }
+            GameField gameField = m_gameFieldCommand.Execute();
+            IEnumerable<Vector2> path = new[]
+                { new Vector2(m_duckTransformContainer.Value.position.x, gameField.BottomLeft.y) };
+
+            m_duckExecutor.Execute(path);
+            m_duckExecutor.Execute();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace DuckHunt
         protected override ICommandVoid<Action> Runner { get; }
         protected override ICommandVoid<int> Command { get; }
 
-        public DuckFallExecutor(CommandRunner runner, IDuckFallCommand command, IShotDuckObservable shotDuckObservable)
+        public DuckFallExecutor(CommandRunner runner, IDuckShotDownCommand command, IShotDuckObservable shotDuckObservable)
         {
             Runner = runner;
             Command = command;

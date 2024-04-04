@@ -7,6 +7,7 @@ namespace DuckHunt
     {
         [SerializeField] private DuckMonoExecutor m_duckPrefab = default;
         [SerializeField] private DucksContainer m_ducksContainer = default;
+        [SerializeField] private CanvasValueContainer m_canvasValueContainer = default;
         public override void InstallBindings()
         {
 
@@ -15,6 +16,10 @@ namespace DuckHunt
                 .FromComponentInNewPrefab(m_duckPrefab)
                 .AsSingle();
 
+            Container
+                .Bind<ICanvasValueContainer>()
+                .FromInstance(m_canvasValueContainer)
+                .AsSingle();
 
             Container
                 .Bind<IPathGeneratorCommand>()

@@ -6,18 +6,20 @@ using UnityEngine;
 
 namespace DuckHunt
 {
-    public sealed class DuckExecutor : CoroutineTargetExecutor<IEnumerable<Vector2>>, ICommandVoid<IEnumerable<Vector2>>
+    public sealed class DuckExecutor : CoroutineTargetExecutor<IEnumerable<Vector2>>, ICommandVoid<IEnumerable<Vector2>>, IDuckMoveStoppable
     {
         protected override ICommandVoid<Func<IEnumerator>> Runner { get; }
         protected override ICommand<IEnumerable<Vector2>, IEnumerator> Command { get; }
         protected override IEnumerable<Vector2> Target => m_target;
 
         private IEnumerable<Vector2> m_target = default;
+        public ICoroutineStoppable Stoppable { get; }
 
         public DuckExecutor(IDuckCommand command, CoroutineCommandRunner runner)
         {
             Command = command;
             Runner = runner;
+            Stoppable = runner;
         }
 
         public void Execute(IEnumerable<Vector2> v1)

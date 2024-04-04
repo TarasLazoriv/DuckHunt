@@ -31,7 +31,6 @@ namespace DuckHunt
             if (hit.collider != null && hit.transform.CompareTag(DuckTag))
             {
                 m_shotDuck.Value = hit.transform.GetInstanceID();
-                Debug.LogError("finded duck" + hit.collider.gameObject.name);
             }
         }
 

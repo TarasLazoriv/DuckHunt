@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 2153471559326445295}
   - component: {fileID: 4884940184231468788}
   - component: {fileID: 4546417288154125741}
+  - component: {fileID: -942965041056304427}
+  - component: {fileID: -8236291674159107112}
   m_Layer: 0
   m_Name: Duck
   m_TagString: Duck
@@ -225,6 +227,8 @@ MonoBehaviour:
   m_duckTransform: {fileID: 6509015819095786601}
   m_duckAnimator: {fileID: 4884940184231468788}
   m_duckCollider: {fileID: 6640260498994058845}
+  m_duckPointsEarnedPrefab: {fileID: -942965041056304427}
+  m_duckFlyAwayPrefab: {fileID: -8236291674159107112}
 --- !u!114 &5706068809509696703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,3 +348,29 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.43, y: 1.46}
   m_EdgeRadius: 0
+--- !u!114 &-942965041056304427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886874431621425896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00265d122ecaf964db1d21ec0577fa80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Value>k__BackingField: {fileID: 710285915680903607, guid: ff3d26ef794c34340924d7cd8e2e250d, type: 3}
+--- !u!114 &-8236291674159107112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886874431621425896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b89bfaa556a5cb48ac3e1414d756437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Value>k__BackingField: {fileID: 7998802987880980839, guid: 442285c7855a82b43abadf8341da3b25, type: 3}

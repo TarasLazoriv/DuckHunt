@@ -42,14 +42,18 @@ namespace DuckHunt
 
             Container
                 .Bind<HuntingStateExecutor>()
-                .To<HuntingStateExecutor>()
                 .AsSingle()
                 .NonLazy();
 
             Container
-                    .Bind(typeof(IHuntingStateValue), typeof(IHuntingStateObservable))
-                    .To<HuntingStateValue>()
-                    .AsSingle();
+                .Bind<HuntingResultExecutor>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind(typeof(IHuntingStateValue), typeof(IHuntingStateObservable))
+                .To<HuntingStateValue>()
+                .AsSingle();
 
         }
     }

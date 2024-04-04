@@ -1,4 +1,3 @@
-using LazerLabs.Commands;
 using UnityEngine;
 using Zenject;
 
@@ -9,8 +8,21 @@ namespace DuckHunt
         [SerializeField] private DuckTransformContainer m_duckTransform = default;
         [SerializeField] private DuckAnimatorContainer m_duckAnimator = default;
         [SerializeField] private DuckColliderContainer m_duckCollider = default;
+
+
+        [SerializeField] private DuckPointsEarnedPrefabContainer m_duckPointsEarnedPrefab = default;
+        [SerializeField] private DuckFlyAwayPrefabContainer m_duckFlyAwayPrefab = default;
         public override void InstallBindings()
         {
+            Container
+                .Bind<IDuckPointsEarnedPrefabContainer>()
+                .FromInstance(m_duckPointsEarnedPrefab)
+                .AsSingle();
+
+            Container
+                .Bind<IDuckFlyAwayPrefabContainer>()
+                .FromInstance(m_duckFlyAwayPrefab)
+                .AsSingle();
 
             Container
                 .Bind<IDuckTransformContainer>()
@@ -34,8 +46,12 @@ namespace DuckHunt
 
             Container
                 .Bind<DuckExecutor>()
-                .To<DuckExecutor>()
                 .AsSingle();
+
+            Container
+                .Bind<IDuckMoveStoppable>()
+                .To<DuckExecutor>()
+                .FromResolve();
 
             Container
                 .Bind<IDuckDirectionCommand>()
@@ -63,19 +79,22 @@ namespace DuckHunt
                 .AsSingle();
 
             Container
+                .Bind<IDuckShotDownCommand>()
+                .To<DuckShotDownCommand>()
+                .AsSingle();
+
+            Container
                 .Bind<IDuckFallCommand>()
                 .To<DuckFallCommand>()
                 .AsSingle();
-            
+
             Container
                 .Bind<DuckFallExecutor>()
-                .To<DuckFallExecutor>()
                 .AsSingle()
                 .NonLazy();
 
             Container
                 .Bind<DuckAnimationExecutor>()
-                .To<DuckAnimationExecutor>()
                 .AsSingle()
                 .NonLazy();
 

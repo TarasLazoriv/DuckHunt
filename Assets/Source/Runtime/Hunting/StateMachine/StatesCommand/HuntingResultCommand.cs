@@ -1,14 +1,15 @@
 using LazerLabs.Commands;
+using UnityEngine;
 
 namespace DuckHunt
 {
-    public interface IHuntingResultCommand : ICommand {}
+    public interface IHuntingResultCommand : ICommand { }
 
     public sealed class HuntingResultCommand : IHuntingResultCommand
     {
         public void Execute()
         {
-            throw new System.NotImplementedException();
+            Debug.LogError($"Result  ducks!");
         }
     }
 }
