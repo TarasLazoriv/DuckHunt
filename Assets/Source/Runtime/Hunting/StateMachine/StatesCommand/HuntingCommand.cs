@@ -21,7 +21,8 @@ namespace DuckHunt
 
         public void Execute()
         {
-            m_dogAnimatorContainer.Value.gameObject.SetActive(false);
+            UnityEngine.Debug.LogError($"{nameof(HuntingCommand)} started");
+          //  m_dogAnimatorContainer.Value.gameObject.SetActive(false);
             uint duckCount = m_duckCountValue.Value;
             m_activeDuckCountValue.Value = duckCount;
             for (int i = 0; i < duckCount; i++)

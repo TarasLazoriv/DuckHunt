@@ -9,6 +9,7 @@ namespace DuckHunt
 
         [SerializeField] private HuntingState m_newHuntingState = default;
 
+
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             m_huntingStateValue.Value = m_newHuntingState;

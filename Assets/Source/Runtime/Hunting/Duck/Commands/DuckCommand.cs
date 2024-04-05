@@ -19,6 +19,8 @@ namespace DuckHunt
         private readonly IDuckDirectionValue m_directionValue = default;
         private readonly IActiveDucksCountValue m_activeDucksCount = default;
         private readonly ICaughtDucksValue m_caughtDucksCount = default;
+        private readonly IDuckAudioSourceContainer m_audioSourceContainer = default;
+        private readonly IDuckDropAudioContainer m_dropAudioContainer = default;
 
         public DuckCommand(
             IDuckTransformContainer obj,
@@ -28,7 +30,9 @@ namespace DuckHunt
             ICanvasValueContainer canvasContainer,
             IDuckDirectionValue directionValue,
             IActiveDucksCountValue activeDucksCount,
-            ICaughtDucksValue caughtDucksCount)
+            ICaughtDucksValue caughtDucksCount,
+            IDuckAudioSourceContainer audioSourceContainer,
+            IDuckDropAudioContainer dropAudioContainer)
         {
             m_obj = obj;
             m_directionCommand = directionCommand;
@@ -38,6 +42,8 @@ namespace DuckHunt
             m_directionValue = directionValue;
             m_activeDucksCount = activeDucksCount;
             m_caughtDucksCount = caughtDucksCount;
+            m_audioSourceContainer = audioSourceContainer;
+            m_dropAudioContainer = dropAudioContainer;
         }
 
         public IEnumerator Execute(IEnumerable<Vector2> path)
@@ -53,6 +59,8 @@ namespace DuckHunt
                 }
             }
 
+            m_audioSourceContainer.Value.Stop();
+
             if (m_directionValue.Value != DuckDirection.Down)
             {
                 Object.Instantiate(m_flyAwayPrefab.Value, m_canvasContainer.Value.transform);
@@ -60,11 +68,16 @@ namespace DuckHunt
             else
             {
                 m_caughtDucksCount.Value++;
+                m_audioSourceContainer.Value.clip = m_dropAudioContainer.Value;
+                m_audioSourceContainer.Value.Play();
             }
 
-            m_activeDucksCount.Value--;
 
             m_obj.Value.gameObject.AddComponent<ObjectDestroyerMonoExecutor>();
+
+            yield return new WaitForSeconds(1);
+
+            m_activeDucksCount.Value--;
 
             Debug.LogError($"END {m_activeDucksCount.Value}");
         }

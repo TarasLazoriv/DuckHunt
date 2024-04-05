@@ -13,6 +13,8 @@ namespace DuckHunt
         private readonly IDuckMoveStoppable m_moveStoppable = default;
         private readonly IDuckPointsEarnedPrefabContainer m_duckPointsEarnedPrefab = default;
         private readonly ICanvasValueContainer m_canvasContainer = default;
+        private readonly IDuckAudioSourceContainer m_audioSourceContainer = default;
+
 
         public DuckShotDownCommand(
             IDuckTransformContainer duckTransformContainer,
@@ -20,7 +22,8 @@ namespace DuckHunt
             IDuckColliderContainer duckColliderContainer,
             IDuckMoveStoppable moveStoppable,
             IDuckPointsEarnedPrefabContainer duckPointsEarnedPrefab,
-            ICanvasValueContainer canvasContainer
+            ICanvasValueContainer canvasContainer,
+            IDuckAudioSourceContainer audioSourceContainer
             )
         {
             m_duckTransformContainer = duckTransformContainer;
@@ -29,12 +32,14 @@ namespace DuckHunt
             m_moveStoppable = moveStoppable;
             m_duckPointsEarnedPrefab = duckPointsEarnedPrefab;
             m_canvasContainer = canvasContainer;
+            m_audioSourceContainer = audioSourceContainer;
         }
 
         public void Execute(int duckId)
         {
             if (m_duckTransformContainer.Value.GetInstanceID() == duckId)
             {
+                m_audioSourceContainer.Value.Stop();
                 m_directionValue.Value = DuckDirection.Down;
                 m_duckColliderContainer.Value.enabled = false;
                 m_moveStoppable.Stoppable.Execute();

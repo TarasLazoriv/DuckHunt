@@ -18,6 +18,7 @@ namespace DuckHunt
 
         public void Execute()
         {
+            UnityEngine.Debug.LogError($"{nameof(FirstRoundIntroCommand)} started");
             m_dogAnimatorContainer.Value.Play(AnimationClipName);
         }
     }

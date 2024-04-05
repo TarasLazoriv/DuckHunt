@@ -17,7 +17,7 @@ namespace DuckHunt
 
         public void Execute()
         {
-            m_dogAnimatorContainer.Value.transform.gameObject.SetActive(true);
+            UnityEngine.Debug.LogError($"{nameof(NewRoundCommand)} started");
             m_dogAnimatorContainer.Value.Play(AnimationClipName);
         }
     }
