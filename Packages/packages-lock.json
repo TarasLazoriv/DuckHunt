@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "c92ce6c9c0c57e88763f362fb507c79ec3adde2d"
+      "hash": "10cdef8d0c8c2e06f544ea48a37f54a6537d1f9f"
     },
     "com.svermeulen.extenject": {
       "version": "git@github.com:TarasLazoriv/ZenjectUPM.git#9.2.2",
