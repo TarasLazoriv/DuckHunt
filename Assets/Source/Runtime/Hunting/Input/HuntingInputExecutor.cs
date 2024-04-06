@@ -8,10 +8,21 @@ namespace DuckHunt
         protected override ICommandVoid<Action> Runner { get; }
         protected override ICommand Command { get; }
 
-        public HuntingInputExecutor(CommandRunner runner, IHuntingInputCommand command)
+        private readonly IHuntingStateValue m_huntingState = default;
+
+        public HuntingInputExecutor(CommandRunner runner, IHuntingInputCommand command, IHuntingStateValue huntingState)
         {
             Runner = runner;
             Command = command;
+            m_huntingState = huntingState;
+        }
+
+        public override void Execute()
+        {
+            if (m_huntingState.Value == HuntingState.Hunting)
+            {
+                base.Execute();
+            }
         }
     }
 }

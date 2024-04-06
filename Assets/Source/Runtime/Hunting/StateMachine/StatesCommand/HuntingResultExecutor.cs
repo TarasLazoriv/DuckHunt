@@ -18,7 +18,6 @@ namespace DuckHunt
 
         public override void OnNext(uint activeDucksCount)
         {
-            UnityEngine.Debug.LogError($"{nameof(HuntingResultExecutor)} started");
             if (activeDucksCount == 0)
             {
                 base.OnNext(activeDucksCount);

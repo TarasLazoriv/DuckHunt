@@ -1,4 +1,5 @@
 using LazerLabs.Commands;
+using UnityEngine;
 using Zenject;
 
 namespace DuckHunt
@@ -9,6 +10,10 @@ namespace DuckHunt
         {
             public DuckCount() : base(2) { }
         } // ToDo Del
+
+        [SerializeField] private HuntingShotSoundMonoCommand m_shotViewMonoCommand = default;
+        [SerializeField] private PlayScoreSoundMonoCommand m_playScoreViewMonoCommand = default;
+
         public override void InstallBindings()
         {
             Container
@@ -16,6 +21,16 @@ namespace DuckHunt
                 .To<DuckCount>() // ToDo Del
                 .AsSingle();
 
+
+            Container
+                .Bind<IHuntingShotSoundCommand>()
+                .FromInstance(m_shotViewMonoCommand)
+                .AsSingle();
+
+            Container
+                .Bind<IPlayScoreSoundCommand>()
+                .FromInstance(m_playScoreViewMonoCommand)
+                .AsSingle();
 
             ICoroutine coroutine = gameObject.AddComponent<CoroutineObject>();
 
@@ -56,6 +71,10 @@ namespace DuckHunt
             Container
                 .Bind(typeof(IShotDuckValue), typeof(IShotDuckObservable))
                 .To<ShotDuckValue>()
+                .AsSingle();
+
+            Container
+                .BindInterfacesTo<RoundDuckHuntingResult>()
                 .AsSingle();
 
             Container

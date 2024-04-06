@@ -6,23 +6,25 @@ namespace DuckHunt
 
     public sealed class HuntingCommand : IHuntingCommand
     {
-        private readonly IDogAnimatorContainer m_dogAnimatorContainer = default;
         private readonly IDuckSpawnCommand m_factory = default;
         private readonly IDuckCountValue m_duckCountValue = default;
         private readonly IActiveDucksCountValue m_activeDuckCountValue = default;
+        private readonly IShotAmmo m_shotAmmo = default;
 
-        public HuntingCommand(IDogAnimatorContainer dogAnimatorContainer, IDuckSpawnCommand factory, IDuckCountValue duckCountValue, IActiveDucksCountValue activeDuckCountValue)
+        private const uint DefaultAmmoCount = 3;
+
+        public HuntingCommand(IDuckSpawnCommand factory, IDuckCountValue duckCountValue, IActiveDucksCountValue activeDuckCountValue, IShotAmmo shotAmmo)
         {
-            m_dogAnimatorContainer = dogAnimatorContainer;
             m_factory = factory;
             m_duckCountValue = duckCountValue;
             m_activeDuckCountValue = activeDuckCountValue;
+            m_shotAmmo = shotAmmo;
         }
 
         public void Execute()
         {
             UnityEngine.Debug.LogError($"{nameof(HuntingCommand)} started");
-          //  m_dogAnimatorContainer.Value.gameObject.SetActive(false);
+            m_shotAmmo.Value = DefaultAmmoCount;
             uint duckCount = m_duckCountValue.Value;
             m_activeDuckCountValue.Value = duckCount;
             for (int i = 0; i < duckCount; i++)

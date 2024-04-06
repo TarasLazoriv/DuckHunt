@@ -21,6 +21,7 @@ namespace DuckHunt
         private readonly ICaughtDucksValue m_caughtDucksCount = default;
         private readonly IDuckAudioSourceContainer m_audioSourceContainer = default;
         private readonly IDuckDropAudioContainer m_dropAudioContainer = default;
+        private readonly IRoundDuckHuntingAddResult m_addDuckResult = default;
 
         public DuckCommand(
             IDuckTransformContainer obj,
@@ -32,7 +33,8 @@ namespace DuckHunt
             IActiveDucksCountValue activeDucksCount,
             ICaughtDucksValue caughtDucksCount,
             IDuckAudioSourceContainer audioSourceContainer,
-            IDuckDropAudioContainer dropAudioContainer)
+            IDuckDropAudioContainer dropAudioContainer,
+            IRoundDuckHuntingAddResult addDuckResult)
         {
             m_obj = obj;
             m_directionCommand = directionCommand;
@@ -44,6 +46,7 @@ namespace DuckHunt
             m_caughtDucksCount = caughtDucksCount;
             m_audioSourceContainer = audioSourceContainer;
             m_dropAudioContainer = dropAudioContainer;
+            m_addDuckResult = addDuckResult;
         }
 
         public IEnumerator Execute(IEnumerable<Vector2> path)
@@ -64,12 +67,14 @@ namespace DuckHunt
             if (m_directionValue.Value != DuckDirection.Down)
             {
                 Object.Instantiate(m_flyAwayPrefab.Value, m_canvasContainer.Value.transform);
+                m_addDuckResult.Execute(false);
             }
             else
             {
                 m_caughtDucksCount.Value++;
                 m_audioSourceContainer.Value.clip = m_dropAudioContainer.Value;
                 m_audioSourceContainer.Value.Play();
+                m_addDuckResult.Execute(true);
             }
 
 
@@ -78,8 +83,6 @@ namespace DuckHunt
             yield return new WaitForSeconds(1);
 
             m_activeDucksCount.Value--;
-
-            Debug.LogError($"END {m_activeDucksCount.Value}");
         }
     }
 }

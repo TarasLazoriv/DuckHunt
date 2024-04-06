@@ -41,6 +41,11 @@ namespace DuckHunt
                 .AsSingle();
 
             Container
+                .Bind(typeof(IRoundGoalObservable), typeof(IRoundGoalValue))
+                .To<RoundGoalValue>()
+                .AsSingle();
+
+            Container
                 .Bind<HuntingStateExecutor>()
                 .AsSingle()
                 .NonLazy();
@@ -53,6 +58,28 @@ namespace DuckHunt
             Container
                 .Bind(typeof(IHuntingStateValue), typeof(IHuntingStateObservable))
                 .To<HuntingStateValue>()
+                .AsSingle();
+
+
+            Container
+                .Bind<IWinRoundCommand>()
+                .To<WinRoundCommand>()
+                .AsSingle();
+
+
+            Container
+                .Bind<ILooseRoundCommand>()
+                .To<LooseRoundCommand>()
+                .AsSingle();
+
+            Container
+                .Bind<IRoundResultAnimationCommand>()
+                .To<RoundResultAnimationCommand>()
+                .AsSingle();
+
+            Container
+                .Bind<IRoundResultAnimationExecutor>()
+                .To<RoundResultAnimationExecutor>()
                 .AsSingle();
 
         }

@@ -19,6 +19,12 @@ namespace DuckHunt
                 .AsSingle();
 
 
+
+            Container
+                .Bind(typeof(IShotAmmo), typeof(IShotAmmoObservable))
+                .To<ShotAmmoValue>()
+                .AsSingle();
+
         }
     }
 }
