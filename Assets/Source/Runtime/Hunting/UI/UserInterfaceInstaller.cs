@@ -8,6 +8,7 @@ namespace DuckHunt
         [SerializeField] private ShotViewMonoCommand m_shotViewMonoCommand = default;
         [SerializeField] private DucksResultMonoCommand m_ducksResult = default;
         [SerializeField] private RoundDuckGoalMonoCommand m_roundDuckGoalCommand = default;
+        [SerializeField] private RoundUIMonoCommand m_roundUIMonoCommand = default;
         public override void InstallBindings()
         {
             Container
@@ -23,6 +24,16 @@ namespace DuckHunt
             Container
                 .Bind<IRoundDuckGoalCommand>()
                 .FromInstance(m_roundDuckGoalCommand)
+                .AsSingle();
+
+            Container
+                .Bind<IRoundUICommand>()
+                .FromInstance(m_roundUIMonoCommand)
+                .AsSingle();
+
+            Container
+                .Bind<IRoundUIExecutor>()
+                .To<RoundUIExecutor>()
                 .AsSingle();
 
             Container

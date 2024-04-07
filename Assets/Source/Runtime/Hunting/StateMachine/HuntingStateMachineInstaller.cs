@@ -7,6 +7,8 @@ namespace DuckHunt
     public sealed class HuntingStateMachineInstaller : MonoInstaller
     {
         [SerializeField] private DogAnimatorContainer m_dogAnimatorContainer = default;
+        [SerializeField] private PerfectObjectContainer m_perfectObjectContainer = default;
+        [SerializeField] private GameOverMonoCommand m_gameOverMonoCommand = default;
         public override void InstallBindings()
         {
 
@@ -41,6 +43,11 @@ namespace DuckHunt
                 .AsSingle();
 
             Container
+                .Bind<IPerfectValueContainer>()
+                .FromInstance(m_perfectObjectContainer)
+                .AsSingle();
+
+            Container
                 .Bind(typeof(IRoundGoalObservable), typeof(IRoundGoalValue))
                 .To<RoundGoalValue>()
                 .AsSingle();
@@ -66,10 +73,19 @@ namespace DuckHunt
                 .To<WinRoundCommand>()
                 .AsSingle();
 
+            Container
+                .Bind<IWinRoundExecutor>()
+                .To<WinRoundExecutor>()
+                .AsSingle();
 
             Container
                 .Bind<ILooseRoundCommand>()
-                .To<LooseRoundCommand>()
+                .FromInstance(m_gameOverMonoCommand)
+                .AsSingle();
+
+            Container
+                .Bind<ILooseRoundExecutor>()
+                .To<LooseRoundExecutor>()
                 .AsSingle();
 
             Container

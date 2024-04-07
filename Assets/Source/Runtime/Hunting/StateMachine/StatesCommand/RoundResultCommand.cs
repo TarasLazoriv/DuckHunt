@@ -11,8 +11,8 @@ namespace DuckHunt
         private readonly ICaughtDucksValue m_caughtDucksCount = default;
         private readonly IHuntingStateValue m_huntingStateValue = default;
         private readonly IRoundDuckHuntingResult m_duckHuntingResult = default;
-        private readonly ILooseRoundCommand m_looseRound = default;
-        private readonly IWinRoundCommand m_winRound = default;
+        private readonly ILooseRoundExecutor m_looseRound = default;
+        private readonly IWinRoundExecutor m_winRound = default;
         private readonly IRoundResultAnimationExecutor m_roundResultAnimation = default;
         private readonly IRoundGoalValue m_goalValue = default;
 
@@ -20,8 +20,8 @@ namespace DuckHunt
             ICaughtDucksValue caughtDucksCount,
             IHuntingStateValue huntingStateValue,
             IRoundDuckHuntingResult duckHuntingResult,
-            ILooseRoundCommand looseRound,
-            IWinRoundCommand winRound,
+            ILooseRoundExecutor looseRound,
+            IWinRoundExecutor winRound,
             IRoundResultAnimationExecutor roundResultAnimation,
             IRoundGoalValue goalValue)
         {
@@ -36,7 +36,6 @@ namespace DuckHunt
 
         public void Execute()
         {
-            Debug.LogError($"{nameof(RoundResultCommand)} started");
             m_caughtDucksCount.Value = default;
 
             if (m_duckHuntingResult.Value.Count() < DuckVariables.DucksInTheRound)

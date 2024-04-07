@@ -14,8 +14,8 @@ namespace DuckHunt
 
         private static readonly IDictionary<bool, Color> DuckStatusToColor = new Dictionary<bool, Color>()
         {
-            {true,Color.white},
-            {false,Color.red},
+            {true,Color.red},
+            {false,Color.white},
         };
 
         private static readonly Color UnActiveDuckColor = new Color(1, 1, 1, 0.25f);

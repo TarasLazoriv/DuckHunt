@@ -21,29 +21,33 @@ namespace DuckHunt
 
         public IEnumerator Execute(ICommand v1)
         {
-            bool animation = true;
-            while (animation)
+            if (!m_duckHuntingResult.Value.All(n => n))
             {
-                for (int i = 0; i < m_duckHuntingResult.Value.Count(); i++)
+                bool animation = true;
+                while (animation)
                 {
-                    bool element = m_duckHuntingResult.Value.ElementAt(i);
-                    if (!element)
+                    for (int i = 0; i < m_duckHuntingResult.Value.Count(); i++)
                     {
-                        if (m_duckHuntingResult.Value.Count(n => n) > i)
+                        bool element = m_duckHuntingResult.Value.ElementAt(i);
+                        if (!element)
                         {
-                            m_duckHuntingReplaceToTheEnd.Execute(i);
-                            m_playScoreSoundCommand.Execute();
-                            yield return new WaitForSeconds(0.4f);
-                            break;
-                        }
-                        else
-                        {
-                            animation = false;
+                            if (m_duckHuntingResult.Value.Count(n => n) > i)
+                            {
+                                m_duckHuntingReplaceToTheEnd.Execute(i);
+                                m_playScoreSoundCommand.Execute();
+                                yield return new WaitForSeconds(0.4f);
+                                break;
+                            }
+                            else
+                            {
+                                animation = false;
+                            }
                         }
                     }
                 }
             }
 
+            v1.Execute();
         }
     }
 }

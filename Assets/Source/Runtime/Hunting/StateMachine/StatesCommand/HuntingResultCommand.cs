@@ -8,21 +8,17 @@ namespace DuckHunt
     {
         private readonly IDogAnimatorContainer m_dogAnimator = default;
         private readonly ICaughtDucksValue m_caughtDucksCount = default;
-        private readonly IHuntingStateValue m_huntingStateValue = default;
 
         private const string AnimationName = "DogRoundResult_";
 
-        public HuntingResultCommand(IDogAnimatorContainer dogAnimator, ICaughtDucksValue caughtDucksCount, IHuntingStateValue huntingStateValue)
+        public HuntingResultCommand(IDogAnimatorContainer dogAnimator, ICaughtDucksValue caughtDucksCount)
         {
             m_dogAnimator = dogAnimator;
             m_caughtDucksCount = caughtDucksCount;
-            m_huntingStateValue = huntingStateValue;
         }
 
         public void Execute()
         {
-            UnityEngine.Debug.LogError($"{nameof(HuntingResultCommand)} started with val {m_huntingStateValue.Value}");
-         //   m_dogAnimator.Value.gameObject.SetActive(true);
             m_dogAnimator.Value.Play($"{AnimationName}{m_caughtDucksCount.Value}");
         }
     }

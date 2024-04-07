@@ -22,7 +22,6 @@ namespace DuckHunt
 
         public void Execute()
         {
-            Debug.LogError(m_shotAmmo.Value);
             if (m_shotAmmo.Value > 0)
             {
                 Camera mainCamera = Camera.main;

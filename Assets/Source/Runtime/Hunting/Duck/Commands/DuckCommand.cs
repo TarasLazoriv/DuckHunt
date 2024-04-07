@@ -22,6 +22,7 @@ namespace DuckHunt
         private readonly IDuckAudioSourceContainer m_audioSourceContainer = default;
         private readonly IDuckDropAudioContainer m_dropAudioContainer = default;
         private readonly IRoundDuckHuntingAddResult m_addDuckResult = default;
+        private readonly IDuckColliderContainer m_duckCollider = default;
 
         public DuckCommand(
             IDuckTransformContainer obj,
@@ -34,7 +35,8 @@ namespace DuckHunt
             ICaughtDucksValue caughtDucksCount,
             IDuckAudioSourceContainer audioSourceContainer,
             IDuckDropAudioContainer dropAudioContainer,
-            IRoundDuckHuntingAddResult addDuckResult)
+            IRoundDuckHuntingAddResult addDuckResult,
+            IDuckColliderContainer duckCollider)
         {
             m_obj = obj;
             m_directionCommand = directionCommand;
@@ -47,6 +49,7 @@ namespace DuckHunt
             m_audioSourceContainer = audioSourceContainer;
             m_dropAudioContainer = dropAudioContainer;
             m_addDuckResult = addDuckResult;
+            m_duckCollider = duckCollider;
         }
 
         public IEnumerator Execute(IEnumerable<Vector2> path)
@@ -62,6 +65,7 @@ namespace DuckHunt
                 }
             }
 
+            m_duckCollider.Value.enabled = false;
             m_audioSourceContainer.Value.Stop();
 
             if (m_directionValue.Value != DuckDirection.Down)

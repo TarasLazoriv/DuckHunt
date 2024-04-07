@@ -6,22 +6,13 @@ namespace DuckHunt
 {
     public sealed class HuntingSceneInstaller : MonoInstaller
     {
-        private sealed class DuckCount : ValueContainer<uint>, IDuckCountValue
-        {
-            public DuckCount() : base(2) { }
-        } // ToDo Del
-
         [SerializeField] private HuntingShotSoundMonoCommand m_shotViewMonoCommand = default;
         [SerializeField] private PlayScoreSoundMonoCommand m_playScoreViewMonoCommand = default;
+        [SerializeField] private RoundWinSoundMonoCommand m_winSoundMonoCommand = default;
+        [SerializeField] private ScoreMonoCommand m_scoreMonoCommand = default;
 
         public override void InstallBindings()
         {
-            Container
-                .Bind<IDuckCountValue>()
-                .To<DuckCount>() // ToDo Del
-                .AsSingle();
-
-
             Container
                 .Bind<IHuntingShotSoundCommand>()
                 .FromInstance(m_shotViewMonoCommand)
@@ -30,6 +21,11 @@ namespace DuckHunt
             Container
                 .Bind<IPlayScoreSoundCommand>()
                 .FromInstance(m_playScoreViewMonoCommand)
+                .AsSingle();
+
+            Container
+                .Bind<IRoundWinSoundCommand>()
+                .FromInstance(m_winSoundMonoCommand)
                 .AsSingle();
 
             ICoroutine coroutine = gameObject.AddComponent<CoroutineObject>();
@@ -82,7 +78,21 @@ namespace DuckHunt
                 .To<CaughtDucksValue>()
                 .AsSingle();
 
+
+
+            Container
+                .Bind<IScoreCommand>()
+                .FromInstance(m_scoreMonoCommand)
+                .AsSingle();
+            
+            Container
+                .Bind<ScoreExecutor>()
+                .To<ScoreExecutor>()
+                .AsSingle()
+                .NonLazy();
+            
         }
+
         private sealed class RoundContainer : ValueContainer<uint>, IRoundValue { }
     }
 }
