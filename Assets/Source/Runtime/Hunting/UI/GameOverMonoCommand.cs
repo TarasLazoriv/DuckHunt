@@ -14,6 +14,8 @@ namespace DuckHunt
         [SerializeField] private GameObject m_gameOverUIObject= default;
 
         [Inject] private readonly IDogAnimatorContainer m_dogAnimatorContainer = default;
+        [Inject] private readonly IPlayerScore m_playerScore = default;
+        [Inject] private readonly IPlayerMaxScore m_playerMaxScore = default;
 
         private const string AnimationClipName = "DogGameOver";
 
@@ -27,6 +29,11 @@ namespace DuckHunt
                 yield return null;
             }
             m_dogAnimatorContainer.Value.Play(AnimationClipName);
+
+            if (m_playerScore.Value > m_playerMaxScore.Value)
+            {
+                m_playerMaxScore.Value = (int)m_playerScore.Value;
+            }
 
             yield return new WaitForSeconds(5);
 
