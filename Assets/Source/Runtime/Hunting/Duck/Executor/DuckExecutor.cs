@@ -15,7 +15,7 @@ namespace DuckHunt
         private IEnumerable<Vector2> m_target = default;
         public ICoroutineStoppable Stoppable { get; }
 
-        public DuckExecutor(IDuckCommand command, CoroutineCommandRunner runner)
+        public DuckExecutor(IDuckCommand command, ICoroutineCommandRunner runner)
         {
             Command = command;
             Runner = runner;

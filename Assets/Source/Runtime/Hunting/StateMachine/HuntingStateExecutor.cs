@@ -16,7 +16,7 @@ namespace DuckHunt
 
         private HuntingState m_currentState = default;
 
-        public HuntingStateExecutor(IFirstRoundIntroCommand firstRoundIntroCommand, INewRoundCommand newRoundCommand, IHuntingCommand huntingCommand, IHuntingResultCommand huntingResultCommand, IRoundResultCommand soundResultCommand, IHuntingStateObservable huntingStateObservable, CommandRunner runner)
+        public HuntingStateExecutor(IFirstRoundIntroCommand firstRoundIntroCommand, INewRoundCommand newRoundCommand, IHuntingCommand huntingCommand, IHuntingResultCommand huntingResultCommand, IRoundResultCommand soundResultCommand, IHuntingStateObservable huntingStateObservable, ICommandRunner runner)
         {
             m_firstRoundIntroCommand = firstRoundIntroCommand;
             m_newRoundCommand = newRoundCommand;

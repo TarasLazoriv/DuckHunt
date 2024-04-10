@@ -13,7 +13,7 @@ namespace DuckHunt
 
         private ICommand m_target = default;
 
-        public RoundResultAnimationExecutor(CoroutineCommandRunner runner, IRoundResultAnimationCommand command)
+        public RoundResultAnimationExecutor(ICoroutineCommandRunner runner, IRoundResultAnimationCommand command)
         {
             Runner = runner;
             Command = command;

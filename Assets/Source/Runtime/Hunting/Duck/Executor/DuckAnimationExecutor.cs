@@ -8,7 +8,7 @@ namespace DuckHunt
         protected override ICommandVoid<Action> Runner { get; }
         protected override ICommandVoid<DuckDirection> Command { get; }
 
-        public DuckAnimationExecutor(IDuckAnimationCommand command, CommandRunner runner, IDuckDirectionObservable duckDirection)
+        public DuckAnimationExecutor(IDuckAnimationCommand command, ICommandRunner runner, IDuckDirectionObservable duckDirection)
         {
             Runner = runner;
             Command = command;

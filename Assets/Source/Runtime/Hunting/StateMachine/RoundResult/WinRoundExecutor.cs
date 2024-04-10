@@ -10,7 +10,7 @@ namespace DuckHunt
         protected override ICommandVoid<Func<IEnumerator>> Runner { get; }
         protected override ICommand<IEnumerator> Command { get; }
 
-        public WinRoundExecutor(CoroutineCommandRunner runner, IWinRoundCommand command)
+        public WinRoundExecutor(ICoroutineCommandRunner runner, IWinRoundCommand command)
         {
             Runner = runner;
             Command = command;

@@ -8,7 +8,7 @@ namespace DuckHunt
         protected override ICommandVoid<Action> Runner { get; }
         protected override ICommandVoid<uint> Command { get; }
 
-        public RoundDuckGoalExecutor(CommandRunner runner, IRoundDuckGoalCommand command, IRoundGoalObservable observable)
+        public RoundDuckGoalExecutor(ICommandRunner runner, IRoundDuckGoalCommand command, IRoundGoalObservable observable)
         {
             Runner = runner;
             Command = command;

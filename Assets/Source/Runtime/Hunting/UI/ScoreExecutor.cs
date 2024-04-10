@@ -8,7 +8,7 @@ namespace DuckHunt
         protected override ICommandVoid<Action> Runner { get; }
         protected override ICommandVoid<uint> Command { get; }
 
-        public ScoreExecutor(CommandRunner runner, IScoreCommand command, IObservablePlayerScore observable)
+        public ScoreExecutor(ICommandRunner runner, IScoreCommand command, IObservablePlayerScore observable)
         {
             Runner = runner;
             Command = command;

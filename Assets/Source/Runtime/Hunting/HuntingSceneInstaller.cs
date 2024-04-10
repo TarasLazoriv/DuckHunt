@@ -36,11 +36,13 @@ namespace DuckHunt
                 .AsSingle();
 
             Container
-                .Bind<CoroutineCommandRunner>()
+                .Bind<ICoroutineCommandRunner>()
+                .To<CoroutineCommandRunner>()
                 .AsTransient();
 
             Container
-                .Bind<CommandRunner>()
+                .Bind<ICommandRunner>()
+                .To<CommandRunner>()
                 .AsTransient();
 
             Container

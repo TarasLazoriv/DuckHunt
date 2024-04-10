@@ -9,7 +9,7 @@ namespace DuckHunt
         protected override ICommandVoid<Action> Runner { get; }
         protected override ICommand Command { get; }
 
-        public HuntingResultExecutor(CommandRunner runner, IHuntingResultCommand command, IActiveDucksCountObservable observable)
+        public HuntingResultExecutor(ICommandRunner runner, IHuntingResultCommand command, IActiveDucksCountObservable observable)
         {
             Runner = runner;
             Command = command;
