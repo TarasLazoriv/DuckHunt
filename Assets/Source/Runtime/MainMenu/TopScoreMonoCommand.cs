@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using LazerLabs.Commands;
 using TMPro;
 using UnityEngine;
@@ -7,9 +5,7 @@ using Zenject;
 
 namespace DuckHunt
 {
-
-    public interface ITopScoreCommand : ICommand { }
-    public class TopScoreMonoCommand : MonoBehaviour, ITopScoreCommand
+    public class TopScoreMonoCommand : MonoCommand
     {
         [SerializeField] private TextMeshProUGUI m_maxScoreText = default;
 
@@ -17,7 +13,7 @@ namespace DuckHunt
 
         private const string PlayerMaxScoreText = "TOP SCORE = {0}";
 
-        public void Execute()
+        public override void Execute()
         {
             m_maxScoreText.text = string.Format(PlayerMaxScoreText, m_playerMaxScore.Value);
         }

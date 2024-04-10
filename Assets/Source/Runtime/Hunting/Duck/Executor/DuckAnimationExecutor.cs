@@ -3,7 +3,7 @@ using LazerLabs.Commands;
 
 namespace DuckHunt
 {
-    public sealed class DuckAnimationExecutor : ObserverTargetExecutor<DuckDirection>
+    public sealed class DuckAnimationExecutor : CommandObserverTargetExecutor<DuckDirection>
     {
         protected override ICommandVoid<Action> Runner { get; }
         protected override ICommandVoid<DuckDirection> Command { get; }

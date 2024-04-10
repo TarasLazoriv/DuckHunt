@@ -5,7 +5,7 @@ using LazerLabs.Commands;
 namespace DuckHunt
 {
     public interface IWinRoundExecutor : ICommand { }
-    public sealed class WinRoundExecutor : CoroutineExecutor, IWinRoundExecutor
+    public sealed class WinRoundExecutor : CoroutineCommandExecutor, IWinRoundExecutor
     {
         protected override ICommandVoid<Func<IEnumerator>> Runner { get; }
         protected override ICommand<IEnumerator> Command { get; }

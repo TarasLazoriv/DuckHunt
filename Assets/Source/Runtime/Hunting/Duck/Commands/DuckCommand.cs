@@ -82,7 +82,7 @@ namespace DuckHunt
             }
 
 
-            m_obj.Value.gameObject.AddComponent<ObjectDestroyerMonoExecutor>();
+            m_obj.Value.gameObject.AddComponent<ObjectDestroyerExecutor>();
 
             yield return new WaitForSeconds(1);
 

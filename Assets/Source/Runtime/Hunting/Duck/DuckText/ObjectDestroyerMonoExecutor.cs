@@ -2,51 +2,29 @@ using System;
 using System.Collections;
 using LazerLabs.Commands;
 using UnityEngine;
-using Zenject;
 
 namespace DuckHunt
 {
-    public sealed class ObjectDestroyerExecutor : CoroutineTargetExecutor<GameObject>, ICommandVoid<GameObject>
+    public sealed class ObjectDestroyerExecutor : CoroutineCommandMonoExecutor<GameObject>
     {
-        protected override ICommandVoid<Func<IEnumerator>> Runner { get; }
-        protected override ICommand<GameObject, IEnumerator> Command { get; }
-        protected override GameObject Target => m_target;
+        private ObjectDestroyCommand m_command = default;
+        private CoroutineCommandMonoRunner m_runner = default;
 
-        private GameObject m_target = default;
+        protected override ICommandVoid<Func<IEnumerator>> Runner => m_runner;
+        protected override ICommand<GameObject, IEnumerator> Command => m_command;
+        protected override GameObject Target => gameObject;
 
-        public ObjectDestroyerExecutor(ICommandVoid<Func<IEnumerator>> runner, ICommand<GameObject, IEnumerator> command)
-        {
-            Runner = runner;
-            Command = command;
-        }
-
-        public void Execute(GameObject target)
-        {
-            m_target = target;
-        }
-    }
-
-    public sealed class ObjectDestroyerMonoExecutor : CoroutineMonoExecutor
-    {
-        public sealed class Factory : PlaceholderFactory<DuckMonoExecutor> { }
-        
-
-        private ObjectDestroyerExecutor m_objectDestroyer = default;
-
-        protected override BaseExecutor<ICommandVoid<Func<IEnumerator>>, Func<IEnumerator>> BaseExecutor => m_objectDestroyer;
 
         private void Awake()
         {
-            IObjectDestroyCommand destroyCommand = new ObjectDestroyCommand();
-            MonoCoroutineCommandRunner runner = gameObject.AddComponent<MonoCoroutineCommandRunner>();
-            m_objectDestroyer = new ObjectDestroyerExecutor(runner, destroyCommand);
+            m_command = new ObjectDestroyCommand();
+            m_runner = gameObject.AddComponent<CoroutineCommandMonoRunner>();
         }
 
-        private void Start()
+        protected override void Start()
         {
-            m_objectDestroyer.Execute(gameObject);
+            base.Start();
             Execute();
         }
-
     }
 }

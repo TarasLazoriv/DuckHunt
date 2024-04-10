@@ -1982,6 +1982,7 @@ GameObject:
   - component: {fileID: 1837009786}
   - component: {fileID: 1837009788}
   - component: {fileID: 1837009787}
+  - component: {fileID: 1837009789}
   m_Layer: 0
   m_Name: TopScore
   m_TagString: Untagged
@@ -2016,7 +2017,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07cf396f45a6f664bbf9c95db9b2dbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_command: {fileID: 1837009788}
+  m_onStartExecute: 0
+  m_commandRunner: {fileID: 1837009789}
+  m_monoCommand: {fileID: 1837009788}
 --- !u!114 &1837009788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2030,6 +2033,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxScoreText: {fileID: 173217725}
+--- !u!114 &1837009789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837009785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c3dba723dbfc946bed4fadfbda7613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1957761885
 GameObject:
   m_ObjectHideFlags: 0

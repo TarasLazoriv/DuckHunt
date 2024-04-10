@@ -5,10 +5,9 @@ using UnityEngine.SceneManagement;
 
 namespace DuckHunt
 {
-    public interface IInitialization : ICommand<Scene, IEnumerator> { }
-    public sealed class InitializationCommand: IInitialization
+    public sealed class InitializationCommand : CoroutineMonoCommand<Scene>
     {
-        public IEnumerator Execute(Scene v1)
+        public override IEnumerator Execute(Scene v1)
         {
 
             AsyncOperation loadCamera = SceneManager.LoadSceneAsync(SceneVariables.Camera, LoadSceneMode.Additive);

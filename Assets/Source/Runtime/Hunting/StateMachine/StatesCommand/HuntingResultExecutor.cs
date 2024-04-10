@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DuckHunt
 {
-    public sealed class HuntingResultExecutor : ObserverExecutor<uint>
+    public sealed class HuntingResultExecutor : CommandObserverExecutor<uint>
     {
         protected override ICommandVoid<Action> Runner { get; }
         protected override ICommand Command { get; }

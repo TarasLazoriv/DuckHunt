@@ -4,7 +4,7 @@ using LazerLabs.Commands;
 
 namespace DuckHunt
 {
-    public sealed class DucksResultExecutor : ObserverTargetExecutor<IEnumerable<bool>>
+    public sealed class DucksResultExecutor : CommandObserverTargetExecutor<IEnumerable<bool>>
     {
         protected override ICommandVoid<Action> Runner { get; }
         protected override ICommandVoid<IEnumerable<bool>> Command { get; }

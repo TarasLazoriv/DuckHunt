@@ -13,12 +13,6 @@ namespace DuckHunt
                 .To<HuntingInputCommand>()
                 .AsSingle();
 
-            Container
-                .Bind<HuntingInputExecutor>()
-                .To<HuntingInputExecutor>()
-                .AsSingle();
-
-
 
             Container
                 .Bind(typeof(IShotAmmo), typeof(IShotAmmoObservable))

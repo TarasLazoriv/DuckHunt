@@ -5,7 +5,7 @@ using LazerLabs.Commands;
 namespace DuckHunt
 {
     public interface IRoundResultAnimationExecutor : ICommandVoid<ICommand> { }
-    public sealed class RoundResultAnimationExecutor : CoroutineTargetExecutor<ICommand>, IRoundResultAnimationExecutor
+    public sealed class RoundResultAnimationExecutor : CoroutineCommandExecutor<ICommand>, IRoundResultAnimationExecutor
     {
         protected override ICommandVoid<Func<IEnumerator>> Runner { get; }
         protected override ICommand<ICommand, IEnumerator> Command { get; }

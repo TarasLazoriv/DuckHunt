@@ -9,7 +9,7 @@ namespace DuckHunt
     {
         [Inject] private readonly ZenjectSceneLoader m_sceneLoader = default;
 
-        [SerializeField] private MonoCoroutineCommandRunner m_coroutineCommandRunner = default;
+        [SerializeField] private CoroutineCommandMonoRunner m_coroutineCommandRunner = default;
 
         private StartGameExecutor m_startGameExecutor = default;
 

@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace DuckHunt
 {
-    public interface IObjectDestroyCommand : ICommand<GameObject, IEnumerator> { }
 
-    public sealed class ObjectDestroyCommand : IObjectDestroyCommand
+    public sealed class ObjectDestroyCommand : ICommand<GameObject, IEnumerator>
     {
         public IEnumerator Execute(GameObject v1)
         {
