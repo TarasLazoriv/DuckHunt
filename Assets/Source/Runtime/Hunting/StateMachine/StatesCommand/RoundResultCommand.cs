@@ -44,7 +44,7 @@ namespace DuckHunt
             }
             else
             {
-                if (m_duckHuntingResult.Value.Count(n => n) > m_goalValue.Value)
+                if (m_duckHuntingResult.Value.Count(n => n) >= m_goalValue.Value)
                 {
                     // win
                     m_roundResultAnimation.Execute(m_winRound);
