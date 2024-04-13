@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Bootstrap.unity
+    guid: 658be9efd81176743920eb0fec6f72e2
+  - enabled: 1
+    path: Assets/Scenes/System/Camera.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/System/EventSystem.unity
+    guid: 788d0ac702ffeae498c8a44d705b4601
+  - enabled: 1
+    path: Assets/Scenes/HuntingScene.unity
+    guid: fd68b821c439659439cf7cd0f916081d
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 01275c9e7de8bb84581124d4a8ce6d50
+  m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
