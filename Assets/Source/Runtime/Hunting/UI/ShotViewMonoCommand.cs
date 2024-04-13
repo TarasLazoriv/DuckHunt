@@ -5,10 +5,13 @@ namespace DuckHunt
 {
     public interface IShotViewCommand : ICommandVoid<uint> { }
 
-    public sealed class ShotViewMonoCommand : MonoBehaviour, IShotViewCommand
+    /// <summary>
+    /// If you don't like using MonoValueContainer or Mono Executors, you can use  Mono commands.
+    /// </summary>
+    public sealed class ShotViewMonoCommand : MonoCommand<uint>, IShotViewCommand
     {
         [SerializeField] private GameObject[] m_ammoObjects = default;
-        public void Execute(uint ammo)
+        public override void Execute(uint ammo)
         {
             for (int i = 0; i < m_ammoObjects.Length; i++)
             {

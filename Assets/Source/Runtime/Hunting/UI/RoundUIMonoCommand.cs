@@ -8,7 +8,10 @@ namespace DuckHunt
 {
     public interface IRoundUICommand : ICommand<IEnumerator> { }
 
-    public sealed class RoundUIMonoCommand : MonoBehaviour, IRoundUICommand
+    /// <summary>
+    /// An example of a mono coroutine command.
+    /// </summary>
+    public sealed class RoundUIMonoCommand : CoroutineMonoCommand, IRoundUICommand
     {
         [SerializeField] private TextMeshProUGUI m_roundPopUp = default;
         [SerializeField] private TextMeshProUGUI m_roundLabel = default;
@@ -17,7 +20,7 @@ namespace DuckHunt
 
         private const string RoundPopupString = "ROUND\r\n{0}";
         private const string RoundLabelString = "R={0}";
-        public IEnumerator Execute()
+        public override IEnumerator Execute()
         {
             m_roundPopUp.text = string.Format(RoundPopupString, m_round.Value);
             m_roundLabel.text = string.Format(RoundLabelString, m_round.Value);

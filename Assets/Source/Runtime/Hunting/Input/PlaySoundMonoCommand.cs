@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace DuckHunt
 {
-    public abstract class PlaySoundMonoCommand : MonoBehaviour, ICommand
+    public abstract class PlaySoundMonoCommand : MonoCommand, ICommand
     {
         [SerializeField] private AudioSource m_shootSource = default;
-        public void Execute()
+        public override void Execute()
         {
             m_shootSource.Play();
         }

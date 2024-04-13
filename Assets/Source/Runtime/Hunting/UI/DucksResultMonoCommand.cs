@@ -8,7 +8,10 @@ namespace DuckHunt
 {
     public interface IDucksResultCommand : ICommandVoid<IEnumerable<bool>> { }
 
-    public sealed class DucksResultMonoCommand : MonoBehaviour, IDucksResultCommand
+    /// <summary>
+    /// If you don't like using MonoValueContainer or Mono Executors, you can use  Mono commands.
+    /// </summary>
+    public sealed class DucksResultMonoCommand : MonoCommand<IEnumerable<bool>>, IDucksResultCommand
     {
         [SerializeField] private Image[] m_duckImages = default;
 
@@ -20,7 +23,7 @@ namespace DuckHunt
 
         private static readonly Color UnActiveDuckColor = new Color(1, 1, 1, 0.25f);
 
-        public void Execute(IEnumerable<bool> target)
+        public override void Execute(IEnumerable<bool> target)
         {
             int targetCount = target.Count();
             for (int i = 0; i < m_duckImages.Length; i++)

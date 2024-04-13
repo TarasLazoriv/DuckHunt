@@ -2017,7 +2017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07cf396f45a6f664bbf9c95db9b2dbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_onStartExecute: 0
+  m_onStartExecute: 1
   m_commandRunner: {fileID: 1837009789}
   m_monoCommand: {fileID: 1837009788}
 --- !u!114 &1837009788

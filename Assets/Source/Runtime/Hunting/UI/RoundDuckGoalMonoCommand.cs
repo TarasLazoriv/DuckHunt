@@ -5,12 +5,12 @@ namespace DuckHunt
 {
     public interface IRoundDuckGoalCommand : ICommandVoid<uint> { }
 
-    public sealed class RoundDuckGoalMonoCommand : MonoBehaviour, IRoundDuckGoalCommand
+    public sealed class RoundDuckGoalMonoCommand : MonoCommand<uint>, IRoundDuckGoalCommand
     {
         [SerializeField] private GameObject[] m_duckGoalImages = default;
 
 
-        public void Execute(uint goal)
+        public override void Execute(uint goal)
         {
 
             float coefficient = goal / ((float)DuckVariables.DucksInTheRound);

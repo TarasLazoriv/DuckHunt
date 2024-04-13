@@ -3,7 +3,10 @@ using Zenject;
 
 namespace DuckHunt
 {
-    public class DuckFactoryInstaller : MonoInstaller
+    /// <summary>
+    /// Factory. All dependencies for creating ducks are here.
+    /// </summary>
+    public sealed class DuckFactoryInstaller : MonoInstaller
     {
         [SerializeField] private DuckMonoExecutor m_duckPrefab = default;
         [SerializeField] private DucksContainer m_ducksContainer = default;
@@ -16,6 +19,7 @@ namespace DuckHunt
                 .FromComponentInNewPrefab(m_duckPrefab)
                 .AsSingle();
 
+            //MonoValueContainer allows for standardized access to read-only values without tight coupling to specific MonoBehaviours or other components.
             Container
                 .Bind<ICanvasValueContainer>()
                 .FromInstance(m_canvasValueContainer)

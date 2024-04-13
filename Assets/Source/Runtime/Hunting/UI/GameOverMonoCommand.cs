@@ -8,10 +8,10 @@ namespace DuckHunt
 {
     public interface ILooseRoundCommand : ICommand<IEnumerator> { }
 
-    public sealed class GameOverMonoCommand : MonoBehaviour, ILooseRoundCommand
+    public sealed class GameOverMonoCommand : CoroutineMonoCommand, ILooseRoundCommand
     {
         [SerializeField] private AudioSource m_gameOverAudioSource = default;
-        [SerializeField] private GameObject m_gameOverUIObject= default;
+        [SerializeField] private GameObject m_gameOverUIObject = default;
 
         [Inject] private readonly IDogAnimatorContainer m_dogAnimatorContainer = default;
         [Inject] private readonly IPlayerScore m_playerScore = default;
@@ -20,7 +20,7 @@ namespace DuckHunt
         private const string AnimationClipName = "DogGameOver";
 
 
-        public IEnumerator Execute()
+        public override IEnumerator Execute()
         {
             m_gameOverAudioSource.Play();
             m_gameOverUIObject.SetActive(true);
