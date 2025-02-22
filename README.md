@@ -1,5 +1,8 @@
 ## Duck Hunt Description
 
+![Duck Hunt](https://s3.gifyu.com/images/bSgFP.gif)
+
+
 **1. Project Name:**
 
 * **Duck Hunt**
